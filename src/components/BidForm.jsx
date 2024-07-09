@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function BidForm({ jobId, freelancerId }) {
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/bids', {
-        method: 'POST',
+      const response = await fetch("/bids", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           amount,
@@ -19,12 +19,12 @@ function BidForm({ jobId, freelancerId }) {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
-      alert('Bid placed successfully');
+      alert("Bid placed successfully");
     } catch (error) {
-      console.error('Error placing bid', error);
+      console.error("Error placing bid", error);
     }
   };
 

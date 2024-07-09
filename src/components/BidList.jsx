@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const BidList = ({ jobId }) => {
   const [bids, setBids] = useState([]);
@@ -11,10 +11,10 @@ const BidList = ({ jobId }) => {
           const data = await response.json();
           setBids(data);
         } else {
-          console.error('Error fetching bids:', response.statusText);
+          console.error("Error fetching bids:", response.statusText);
         }
       } catch (error) {
-        console.error('Error fetching bids', error);
+        console.error("Error fetching bids", error);
       }
     };
 
@@ -24,21 +24,20 @@ const BidList = ({ jobId }) => {
   const handleAcceptBid = async (bidId) => {
     try {
       const response = await fetch(`/bids/${bidId}/accept`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
       if (response.ok) {
-        alert('Bid accepted successfully');
-        // Optionally update the UI to reflect the bid has been accepted
+        alert("Bid accepted successfully");
       } else {
-        console.error('Error accepting bid:', response.statusText);
-        alert('Error accepting bid');
+        console.error("Error accepting bid:", response.statusText);
+        alert("Error accepting bid");
       }
     } catch (error) {
-      console.error('Error accepting bid:', error);
-      alert('Error accepting bid');
+      console.error("Error accepting bid:", error);
+      alert("Error accepting bid");
     }
   };
 
