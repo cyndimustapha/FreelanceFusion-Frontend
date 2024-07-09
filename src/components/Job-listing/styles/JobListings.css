@@ -1,0 +1,28 @@
+.job-listings {
+    padding: 20px;
+  }
+  
+  .job-listings h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .job-listings ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .job-listings li {
+    margin-bottom: 10px;
+  }
+  
+  .job-listings a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 1.2em;
+  }
+  
+  .job-listings a:hover {
+    text-decoration: underline;
+  }
+  
