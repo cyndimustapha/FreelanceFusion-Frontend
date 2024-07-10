@@ -1,28 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .job-listings {
-    padding: 20px;
-  }
-  
-  .job-listings h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .job-listings ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .job-listings li {
-    margin-bottom: 10px;
-  }
-  
-  .job-listings a {
-    text-decoration: none;
-    color: #3498db;
-    font-size: 1.2em;
-  }
-  
-  .job-listings a:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.job-listings h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.job-listings ul {
+  list-style: none;
+  padding: 0;
+}
+
+.job-listings li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.job-listings li:hover {
+  background-color: #e9e9e9;
+}
+
+.job-listings a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.2em;
+}
+
+.job-listings a:hover {
+  text-decoration: underline;
+}

@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import './JobListings.css';
+import dummyJobs from './dummyJobs';
+import './Loading';
+import './styles/JobListings.css';
 
 const JobListings = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/jobs');
-        setJobs(response.data);
-      } catch (error) {
-        console.error('Error fetching jobs:', error);
-      }
-    };
-
-    fetchJobs();
+    setJobs(dummyJobs);
   }, []);
+
+  if (!jobs) {
+    return <Loading />;
+  }
 
   return (
     <div className="job-listings">

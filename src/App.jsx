@@ -1,17 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import JobListings from './components/JobListings';
-import JobDetails from './components/JobDetails';
+import { Routes, Route } from 'react-router-dom';
+import JobListings from './components/Job-listing/JobListings';
+import JobDetails from './components/Job-listing/JobDetails';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/jobs" component={JobListings} />
-        <Route path="/jobs/:id" component={JobDetails} />
-        {/* Add other routes here */}
-      </Switch>
-    </Router>
+    <Routes>
+      <Route path="/jobs" element={<JobListings />} />
+      <Route path="/jobs/:id" element={<JobDetails />} />
+      {/* Add other routes here */}
+    </Routes>
   );
 }
 

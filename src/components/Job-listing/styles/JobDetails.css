@@ -1,14 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .job-details {
-    padding: 20px;
-  }
-  
-  .job-details h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .job-details p {
-    font-size: 1.2em;
-    margin: 10px 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.job-details h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.job-details p {
+  color: #555;
+  font-size: 1.1em;
+  margin: 5px 0;
+}
+
+.job-details .job-budget {
+  font-weight: bold;
+}
+
+.job-details .job-status {
+  color: #007bff;
+}
