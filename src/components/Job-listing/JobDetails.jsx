@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import dummyJobs from './dummyJobs';
+import { fetchDetails } from '../../redux/jobListings/jobDetails';
 import Loading from './Loading';
 import './styles/JobDetails.css';
 
 const JobDetails = () => {
   const { id } = useParams();
-  const [job, setJob] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const job = dummyJobs.find((job) => job.id === parseInt(id));
-    setJob(job);
-  }, [id]);
+    dispatch(fetchDetails(id));
+  }, [id, dispatch]);
 
-  if (!job) {
+  const { loading, details } = useSelector((state) => ({
+    loading: state.details.loading,
+    details: state.details.details
+  }));
+
+  if (!details || loading) {
     return <Loading />;
   }
 
   return (
     <div className="job-details">
-      <h1 className="job-title">{job.title}</h1>
-      <p className="job-description">{job.description}</p>
-      <p className="job-budget">Budget: ${job.budget}</p>
-      <p className="job-client-id">Client ID: {job.client_id}</p>
-      <p className="job-status">Status: {job.status}</p>
+      <h1 className="job-title">{details.title}</h1>
+      <p className="job-description">{details.description}</p>
+      <p className="job-budget">Budget: ${details.budget}</p>
+      <p className="job-client-id">Client Name: {details.client_name}</p>
+      <p className="job-status">Status: {details.status}</p>
     </div>
   );
 };

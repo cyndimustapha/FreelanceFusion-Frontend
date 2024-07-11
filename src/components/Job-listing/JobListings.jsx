@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import dummyJobs from './dummyJobs';
-import './Loading';
+import { fetchJobs } from '../../redux/jobListings/jobListings';
+import Loading from './Loading';
 import './styles/JobListings.css';
 
 const JobListings = () => {
-  const [jobs, setJobs] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setJobs(dummyJobs);
-  }, []);
+    dispatch(fetchJobs());
+  }, [dispatch]);
 
-  if (!jobs) {
+  const { loading, jobs } = useSelector((state) => ({
+    loading: state.jobs.loading,
+    jobs: state.jobs.jobs
+  }));
+
+  if (!jobs || loading) {
     return <Loading />;
   }
 
@@ -19,11 +25,15 @@ const JobListings = () => {
     <div className="job-listings">
       <h1>Job Listings</h1>
       <ul>
-        {jobs.map(job => (
-          <li key={job.id}>
-            <Link to={`/jobs/${job.id}`}>{job.title}</Link>
-          </li>
-        ))}
+        {jobs === undefined || jobs.length === 0 ? (
+          <p>No Jobs Available at the Moment</p>
+        ) : (
+          jobs.map(job => (
+            <li key={job.id}>
+              <Link to={`/jobs/${job.id}`}>{job.title}<p>by {job.client_name}</p></Link>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

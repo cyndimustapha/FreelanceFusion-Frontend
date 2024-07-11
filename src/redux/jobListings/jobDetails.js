@@ -4,11 +4,11 @@ const GET_DETAILS = "jobs-hub/jobs/GET_DETAILS";
 
 const initialState = {
     loading: false,
-    jobs: [], 
+    details: null, // Changed from 'jobs' to 'details'
 };
 
 const fetchDetails = createAsyncThunk(GET_DETAILS, async (id) => {
-    const DETAILS_API = "http://127.0.0.1:8000/job/";
+    const DETAILS_API = "http://127.0.0.1:5000/api/jobs/";
     const response = await fetch(DETAILS_API + id);
     const data = await response.json();
     return data
@@ -19,22 +19,22 @@ const detailsSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchRecipes.fullfilled, (state, action) => ({
+        builder.addCase(fetchDetails.fulfilled, (state, action) => ({
             loading: false,
             details: { ...action.payload },
         }));
 
-        builder.addCase(fetchRecipes.pending, (state, action) => ({
+        builder.addCase(fetchDetails.pending, (state, action) => ({
             loading: true,
             details: { ...action.payload },
         }));
 
-        builder.addCase(fetchRecipes.failed, (state, action) => ({
+        builder.addCase(fetchDetails.rejected, (state, action) => ({
             loading: false,
             details: null,
         }));
     },
 });
 
-export default detailsSlice;
+export default detailsSlice.reducer;
 export { fetchDetails };

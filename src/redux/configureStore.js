@@ -5,8 +5,8 @@ import jobsReducer from "./jobListings/jobListings";
 import detailsReducer from "./jobListings/jobDetails";
 
 const rootReducer = combineReducers({
-    jobs: jobsReducer.reducer,
-    details: detailsReducer.reducer,
+    jobs: jobsReducer,
+    details: detailsReducer,
 });
 
 const store = configureStore({

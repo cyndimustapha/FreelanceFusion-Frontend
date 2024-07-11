@@ -39,6 +39,10 @@
   font-size: 1.2em;
 }
 
+.job-listings a p {
+  font-size: 0.9em;
+}
+
 .job-listings a:hover {
   text-decoration: underline;
 }
