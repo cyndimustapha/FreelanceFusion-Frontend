@@ -1,17 +1,15 @@
-import React from 'react'
-import JobPosting from './pages/JobPosting'
-import { Login } from "./components/Login"
-import { Register } from "./components/Register"
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <>
-    <JobPosting/>
-    <Login/>
-    <Register/>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Corrected how the component is rendered */}
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
