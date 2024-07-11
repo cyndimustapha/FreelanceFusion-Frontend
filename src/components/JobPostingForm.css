@@ -1,0 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8f9fd, #e3e6f3);
+    color: #333;
+}
+
+.job-posting-form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.job-posting-form form {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.job-posting-form h2 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    color: #4a4a4a;
+    text-align: center;
+    font-weight: bold;
+}
+
+.job-posting-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.job-posting-form input,
+.job-posting-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.job-posting-form input:focus,
+.job-posting-form textarea:focus {
+    border-color: #1e90ff;
+    outline: none;
+}
+
+.job-posting-form textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+.job-posting-form button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background:  #ff4500;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+
