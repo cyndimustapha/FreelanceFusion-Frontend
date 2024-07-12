@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -32,13 +33,25 @@ const Signup = () => {
     <Form onSubmit={handleSubmit}>
       {error && <Alert variant="danger">{error}</Alert>}
       
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Name</Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicFirstName">
+        <Form.Label>First Name</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter your name"
-          name="name"
-          value={formData.name}
+          placeholder="Enter your first name"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicLastName">
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter your last name"
+          name="lastName"
+          value={formData.lastName}
           onChange={handleChange}
           required
         />
