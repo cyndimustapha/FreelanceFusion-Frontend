@@ -19,13 +19,28 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
 
-    // Handle form submission logic here
+    try {
+      const response = await fetch('http://127.0.0.1:5000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Redirect to SignIn page after successful signup
-    navigate('/signin');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Signup failed');
+      }
+
+      navigate('/signin');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -94,29 +109,27 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f0f0', // Light gray background
+    backgroundColor: '#f0f0f0',
   },
   centeredForm: {
-    width: '400px',
+    width: '100%',
+    maxWidth: '400px',
   },
   signupForm: {
-    borderRadius: '8px',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Soft shadow
-    backgroundColor: '#ffffff', // White background
-    padding: '30px',
+    backgroundColor: '#ffffff',
+    padding: '2rem',
+    borderRadius: '0.5rem',
+    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
   },
   formLabel: {
-    color: '#333', // Dark gray label text
+    fontWeight: 'bold',
   },
   formControl: {
-    backgroundColor: '#f5f5f5', // Light gray input field
-    borderColor: '#ddd', // Light gray border
+    marginBottom: '1rem',
   },
   button: {
-    backgroundColor: '#3f51b5', // Deep purple background
-    color: '#ffffff',
-    borderColor: '#3f51b5',
-    transition: 'background-color 0.3s ease, border-color 0.3s ease',
+    width: '100%',
+    marginTop: '1rem',
   },
 };
 
