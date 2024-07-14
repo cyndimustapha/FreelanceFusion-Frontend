@@ -1,50 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import './Dashboard.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
-  const [jobs, setJobs] = useState([]);
-  const navigate = useNavigate();
+  const history = useHistory();
 
   useEffect(() => {
-    const fetchData = async () => {
+    // Fetch user data from the backend
+    const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          navigate('/login');
-          return;
-        }
-        const userResponse = await axios.get('/api/users/me', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setUser(userResponse.data);
-        const jobsResponse = await axios.get('/api/jobs', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setJobs(jobsResponse.data);
+        const response = await axios.get('/api/user');
+        setUser(response.data);
       } catch (error) {
-        console.error(error);
-        navigate('/login');
+        console.error('Error fetching user data', error);
+        history.push('/login');
       }
     };
-    fetchData();
-  }, [navigate]);
+    
+    fetchUserData();
+  }, [history]);
+
+  if (!user) return <p>Loading...</p>;
 
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
-      {user && <p>Welcome, {user.name}!</p>}
-      <h2>Available Jobs</h2>
-      <ul>
-        {jobs.map(job => (
-          <li key={job.id}>{job.title}</li>
-        ))}
-      </ul>
+      <h2>Welcome, {user.name}!</h2>
+      <div className="dashboard-content">
+        {user.role === 'client' ? (
+          <div>
+            <h3>Your Posted Jobs</h3>
+            {/* Render client's posted jobs */}
+          </div>
+        ) : (
+          <div>
+            <h3>Your Active Bids</h3>
+            {/* Render freelancer's active bids */}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,38 @@
+.home {
+    text-align: center;
+    padding: 3rem;
+    background: #f0f0f0;
+  }
+  
+  .home-header {
+    background-color: #282c34;
+    padding: 3rem;
+    color: white;
+  }
+  
+  .home-header h1 {
+    font-size: 3rem;
+  }
+  
+  .home-header p {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .home-buttons {
+    margin-top: 2rem;
+  }
+  
+  .home-btn {
+    background-color: #61dafb;
+    color: white;
+    padding: 1rem 2rem;
+    margin: 0 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .home-btn:hover {
+    background-color: #21a1f1;
+  }
+  
