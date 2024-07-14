@@ -6,18 +6,18 @@ import "./App.css";
 
 import ChannellListContainer from "./components/ChannellListContainer";
 import ChannelContainer from "./components/ChannelContainer";
-
 const apiKey = `nf7gevqn84xk`;
 const client = StreamChat.getInstance(apiKey);
 
 function App() {
   return (
-    <div className="app__wrapper">
-      <Chat client={client}>
-        <ChannellListContainer />
-        <ChannelContainer />
-      </Chat>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }
 
