@@ -1,3 +1,5 @@
+// src/redux/configureStore.js
+
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import logger from "redux-logger";

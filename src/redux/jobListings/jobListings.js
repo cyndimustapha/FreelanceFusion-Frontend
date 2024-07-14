@@ -1,3 +1,4 @@
+// src/redux/jobListings/jobListings.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const JOBS_API = "http://127.0.0.1:5000/api/jobs";
