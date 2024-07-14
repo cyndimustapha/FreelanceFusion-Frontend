@@ -1,3 +1,4 @@
+//  src/components/ProfileSummary.jsx
 import React from 'react';
 
 const ProfileSummary = ({ profile }) => {

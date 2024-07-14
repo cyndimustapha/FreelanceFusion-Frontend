@@ -1,3 +1,4 @@
+// src/components/JobPostingForm.jsx
 import React, { useState } from 'react';
 import './JobPostingForm.css';
 

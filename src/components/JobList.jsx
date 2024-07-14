@@ -1,3 +1,4 @@
+// src/components/JobList.jsx
 import React from 'react';
 
 const JobList = ({ jobs }) => {
