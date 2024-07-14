@@ -1,3 +1,4 @@
+// src/redux/jobListings/jobDetails.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const GET_DETAILS = "jobs-hub/jobs/GET_DETAILS";

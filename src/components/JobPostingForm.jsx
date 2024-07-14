@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* eslint-disable no-unused-vars */
+=======
+// src/components/JobPostingForm.jsx
+>>>>>>> origin/main
 import React, { useState } from 'react';
 import './JobPostingForm.css';
 
