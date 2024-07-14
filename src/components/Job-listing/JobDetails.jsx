@@ -26,6 +26,7 @@ const JobDetails = () => {
     setShowBidForm(!showBidForm);
   };
 
+
   if (!details || loading) {
     return <Loading />;
   }

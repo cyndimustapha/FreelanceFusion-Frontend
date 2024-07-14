@@ -1,5 +1,5 @@
-// src/components/BidList.jsx
 import React, { useEffect, useState, useContext } from 'react';
+import { ListGroup, Button } from 'react-bootstrap'; // Assuming you are using Bootstrap for styling
 import { AuthContext } from '../context/AuthContext';
 
 const BidList = ({ jobId }) => {
@@ -7,58 +7,64 @@ const BidList = ({ jobId }) => {
   const [bids, setBids] = useState([]);
 
   useEffect(() => {
-    const fetchBids = async () => {
-      try {
-        const response = await fetch(`/jobs/${jobId}/bids`, {
-          headers: {
-            'Authorization': `Bearer ${auth.access_token}`,
-          },
-        });
-        const data = await response.json();
-        if (response.ok) {
-          setBids(data);
-        } else {
-          console.error('Error fetching bids', data);
-        }
-      } catch (error) {
-        console.error('Error fetching bids', error);
-      }
-    };
+    fetchBids(jobId);
+  }, [jobId]);
 
-    fetchBids();
-  }, [jobId, auth]);
-
-  const acceptBid = async (bidId) => {
+  const fetchBids = async (jobId) => {
     try {
-      const response = await fetch(`/bids/${bidId}/accept`, {
-        method: 'POST',
+      const response = await fetch(`http://127.0.0.1:5000/jobs/${jobId}/bids`, {
+        method: 'GET',
         headers: {
-          'Authorization': `Bearer ${auth.access_token}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
       if (response.ok) {
-        alert('Bid accepted');
+        const data = await response.json();
+        setBids(data.bids);
       } else {
-        console.error('Error accepting bid', await response.json());
+        console.error('Failed to fetch bids');
       }
     } catch (error) {
-      console.error('Error accepting bid', error);
+      console.error('Error:', error);
+    }
+  };
+
+  const handleSelectBid = async (bidId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/jobs/${jobId}/select-bid`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ bidId }),
+      });
+      if (response.ok) {
+        alert('Bid selected successfully!');
+        fetchBids(jobId); // Refresh bids after selection
+      } else {
+        alert('Failed to select bid.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to select bid.');
     }
   };
 
   return (
-    <div>
-      <h3>Bids</h3>
-      <ul>
+    <div className="bid-list">
+      <h3>Bids for This Job</h3>
+      <ListGroup>
         {bids.map((bid) => (
-          <li key={bid.id}>
-            {bid.amount} by Freelancer {bid.freelancer_id}
-            {auth.role === 'client' && (
-              <button onClick={() => acceptBid(bid.id)}>Accept</button>
-            )}
-          </li>
+          <ListGroup.Item key={bid.id}>
+            <p>Freelancer: {bid.freelancer}</p>
+            <p>Bid Amount: ${bid.amount}</p>
+            <Button variant="primary" onClick={() => handleSelectBid(bid.id)}>
+              Select Bid
+            </Button>
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     </div>
   );
 };

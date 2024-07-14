@@ -28,11 +28,21 @@ const BidForm = ({ jobId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Bid Amount</label>
-      <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required />
-      <button type="submit">Place Bid</button>
-    </form>
+    <Form onSubmit={handleBidSubmit}>
+      <Form.Group controlId="bidAmount">
+        <Form.Label>Bid Amount</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter your bid amount"
+          value={Amount}
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Place Bid
+      </Button>
+    </Form>
   );
 };
 
