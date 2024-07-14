@@ -48,6 +48,7 @@ const JobPostingForm = () => {
     }
   };
 
+
   return (
     <div className="job-posting-form">
       <form onSubmit={handleSubmit}>
