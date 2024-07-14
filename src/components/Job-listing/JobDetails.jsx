@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
-=======
 //src/components/Job-listing/JobDetails.jsx
 import React, { useEffect } from 'react';
->>>>>>> origin/main
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchDetails } from '../../redux/jobListings/jobDetails';

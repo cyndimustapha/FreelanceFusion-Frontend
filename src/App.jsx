@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-/* eslint-disable no-unused-vars */
-import React from 'react'
-import JobPosting from './pages/JobPosting'
-=======
 // src/App.jsx
->>>>>>> origin/main
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';

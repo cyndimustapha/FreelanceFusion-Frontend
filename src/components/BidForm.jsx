@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+// src/components/BidForm.jsx
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
