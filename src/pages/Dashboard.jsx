@@ -31,12 +31,12 @@ const Dashboard = () => {
         {user.role === 'client' ? (
           <div>
             <h3>Your Posted Jobs</h3>
-            {/* Render client's posted jobs */}
+            
           </div>
         ) : (
           <div>
             <h3>Your Active Bids</h3>
-            {/* Render freelancer's active bids */}
+            
           </div>
         )}
       </div>
