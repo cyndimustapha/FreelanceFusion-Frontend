@@ -44,9 +44,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container" style={styles.signupContainer}>
-      <div className="centered-form" style={styles.centeredForm}>
-        <div className="signup-form rounded shadow-lg p-5" style={styles.signupForm}>
+    <div style={styles.signupContainer}>
+      <div style={styles.centeredForm}>
+        <div style={styles.signupForm}>
           <h1 className="text-center text-primary mb-4">Sign Up</h1>
           <Form onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
@@ -125,6 +125,7 @@ const styles = {
     fontWeight: 'bold',
   },
   formControl: {
+    width: '100%',
     marginBottom: '1rem',
   },
   button: {

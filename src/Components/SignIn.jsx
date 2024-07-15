@@ -1,5 +1,3 @@
-// SignIn.jsx
-
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -39,10 +37,7 @@ const SignIn = () => {
       }
 
       const responseData = await response.json();
-      // Assuming your backend sends back an access token
       localStorage.setItem('token', responseData.access_token);
-
-      // Redirect to the main page after successful login
       navigate('/mainpage');
     } catch (err) {
       setError(err.message);
@@ -50,15 +45,15 @@ const SignIn = () => {
   };
 
   return (
-    <section className="overflow-hidden">
-      <div className="flex flex-wrap -m-8">
-        <div className="w-full md:w-1/2 p-8">
-          <div className="px-4 pt-10 md:pb-40 max-w-lg mx-auto">
+    <section style={styles.section}>
+      <div style={styles.container}>
+        <div style={styles.innerContainer}>
+          <div style={styles.formWrapper}>
             <Form onSubmit={handleSubmit}>
               {error && <Alert variant="danger">{error}</Alert>}
               
               <Form.Group className="mb-3" controlId="formGroupEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label style={styles.label}>Email address</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
@@ -66,11 +61,12 @@ const SignIn = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  style={styles.input}
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formGroupPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label style={styles.label}>Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Password"
@@ -78,10 +74,11 @@ const SignIn = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
+                  style={styles.input}
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" style={styles.button}>
                 Log in
               </Button>
             </Form>
@@ -90,6 +87,40 @@ const SignIn = () => {
       </div>
     </section>
   );
-}
+};
+
+const styles = {
+  section: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: '#f0f0f0',
+  },
+  container: {
+    width: '100%',
+    maxWidth: '400px',
+  },
+  innerContainer: {
+    padding: '2rem',
+    borderRadius: '0.5rem',
+    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#ffffff',
+  },
+  formWrapper: {
+    padding: '2rem',
+  },
+  label: {
+    fontWeight: 'bold',
+  },
+  input: {
+    width: '100%',
+    marginBottom: '1rem',
+  },
+  button: {
+    width: '100%',
+    marginTop: '1rem',
+  },
+};
 
 export default SignIn;

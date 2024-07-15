@@ -1,4 +1,4 @@
-.signup-container {
+.homepage-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
     width: 400px;
   }
   
-  .signup-form {
+  .login-form {
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
     background-color: #ffffff; /* White background */
@@ -48,4 +48,3 @@
     background-color: #283593; /* Slightly darker purple on active state */
     border-color: #283593;
   }
-  
