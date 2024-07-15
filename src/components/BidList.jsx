@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { ListGroup, Button } from 'react-bootstrap'; // Assuming you are using Bootstrap for styling
-import { AuthContext } from '../context/AuthContext';
+// src/components/BidList.jsx
+import React, { useEffect, useState } from 'react';
+import { ListGroup, Button } from 'react-bootstrap';
 
 const BidList = ({ jobId }) => {
-  const { auth } = useContext(AuthContext);
   const [bids, setBids] = useState([]);
 
   useEffect(() => {
