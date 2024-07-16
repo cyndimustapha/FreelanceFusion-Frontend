@@ -1,7 +1,6 @@
 // src/components/JobPostingForm.jsx
 import React, { useState } from 'react';
 import './JobPostingForm.css';
-import Navbar from './NavBar';
 
 const JobPostingForm = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +31,13 @@ const JobPostingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('', {
+    const token = localStorage.getItem('token');
+    const JOBS_API = 'http://127.0.0.1:5000/api/jobs'
+    const response = await fetch(JOBS_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(formData),
     });

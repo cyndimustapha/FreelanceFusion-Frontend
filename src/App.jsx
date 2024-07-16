@@ -21,7 +21,7 @@ function App() {
       <Route path="/jobs/dashboard" element={<Dashboard />} />
       <Route path="/jobs/:id" element={<JobDetails />} />
       <Route path="/messages" element={<Chat />} />
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/login" element={<SignIn />} />
       <Route path="/signup" element={<Signup />} />
     </Routes>
   );
