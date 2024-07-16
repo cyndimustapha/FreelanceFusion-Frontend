@@ -1,0 +1,36 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .home-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 50px;
+  }
+  
+  .home-header h1 {
+    margin: 0;
+  }
+  
+  .home-content {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .home-info {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+  }
+  
+  .home-info h2 {
+    color: #333;
+  }
+  
+  .home-info p {
+    color: #666;
+  }
+  

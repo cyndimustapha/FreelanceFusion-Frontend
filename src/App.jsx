@@ -1,23 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Navbar from "./pages/Navbar";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import JobListings from "./pages/JobListings";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Navbar from './pages/Navbar';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
+        <Route path="/" exact element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/job-listings" element={<JobListings />} />
+        {/* Add other routes as needed */}
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
