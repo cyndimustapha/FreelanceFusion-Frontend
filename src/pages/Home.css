@@ -1,36 +1,44 @@
-.home-container {
-    text-align: center;
+.home {
+    font-family: Arial, sans-serif;
     padding: 20px;
+    text-align: center;
   }
   
   .home-header {
-    background-color: #4CAF50;
+    background-color: #282c34;
+    padding: 20px;
     color: white;
-    padding: 50px;
   }
   
-  .home-header h1 {
-    margin: 0;
-  }
-  
-  .home-content {
-    display: flex;
-    justify-content: space-around;
+  .home-overview {
     margin: 20px 0;
   }
   
-  .home-info {
-    background-color: #f1f1f1;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
+  .home-button {
+    background-color: #61dafb;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
   }
   
-  .home-info h2 {
-    color: #333;
+  .home-button:hover {
+    background-color: #21a1f1;
   }
   
-  .home-info p {
-    color: #666;
+  .home-jobs {
+    margin-top: 20px;
+  }
+  
+  .home-jobs ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .home-jobs li {
+    background-color: #f4f4f4;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
   }
   
