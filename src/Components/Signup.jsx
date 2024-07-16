@@ -8,6 +8,7 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
+    role: 'client', // Default role
   });
   const [error, setError] = useState('');
 
@@ -91,6 +92,19 @@ const Signup = () => {
                 required
                 style={styles.formControl}
               />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicRole">
+              <Form.Label style={styles.formLabel}>Role</Form.Label>
+              <Form.Select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                style={styles.formControl}
+              >
+                <option value="client">Client</option>
+                <option value="freelance">Freelance</option>
+              </Form.Select>
             </Form.Group>
 
             <Button variant="primary" type="submit" style={styles.button}>
