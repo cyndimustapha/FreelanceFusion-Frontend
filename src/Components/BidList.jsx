@@ -1,6 +1,7 @@
 // src/components/BidList.jsx
 import React, { useEffect, useState } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
+import Navbar from './NavBar';
 
 const BidList = ({ jobId }) => {
   const [bids, setBids] = useState([]);
@@ -51,20 +52,23 @@ const BidList = ({ jobId }) => {
   };
 
   return (
-    <div className="bid-list">
-      <h3>Bids for This Job</h3>
-      <ListGroup>
-        {bids.map((bid) => (
-          <ListGroup.Item key={bid.id}>
-            <p>Freelancer: {bid.freelancer}</p>
-            <p>Bid Amount: ${bid.amount}</p>
-            <Button variant="primary" onClick={() => handleSelectBid(bid.id)}>
-              Select Bid
-            </Button>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </div>
+    <>
+      <Navbar />
+      <div className="bid-list">
+        <h3>Bids for This Job</h3>
+        <ListGroup>
+          {bids.map((bid) => (
+            <ListGroup.Item key={bid.id}>
+              <p>Freelancer: {bid.freelancer}</p>
+              <p>Bid Amount: ${bid.amount}</p>
+              <Button variant="primary" onClick={() => handleSelectBid(bid.id)}>
+                Select Bid
+              </Button>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
+    </>
   );
 };
 

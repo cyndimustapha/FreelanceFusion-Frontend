@@ -1,23 +1,29 @@
 import React from "react";
-import { Chat } from "stream-chat-react";
-import { StreamChat } from "stream-chat";
-import Cookies from "universal-cookie";
-import "./App.css";
-
-import ChannellListContainer from "./components/ChannellListContainer";
-import ChannelContainer from "./components/ChannelContainer";
-const apiKey = `nf7gevqn84xk`;
-const client = StreamChat.getInstance(apiKey);
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import SignIn from './components/SignIn';
+import Signup from './components/Signup';
+import JobListings from './components/Job-listing/JobListings';
+import JobDetails from './components/Job-listing/JobDetails';
+import Notifications from './components/Notifications';
+import ProfileSummary from './components/ProfileSummary';
+import BidList from './components/BidList';
+import Chat from './components/Chat';
+import JobPosting from './pages/JobPosting';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/jobs" element={<JobListings />} />
+      <Route path="/jobs/posting" element={<JobPosting />} />
+      <Route path="/jobs/dashboard" element={<Dashboard />} />
+      <Route path="/jobs/:id" element={<JobDetails />} />
+      <Route path="/messages" element={<Chat />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
   );
 }
 

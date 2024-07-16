@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/NavBar';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -36,16 +37,19 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
-      {user && <p>Welcome, {user.name}!</p>}
-      <h2>Available Jobs</h2>
-      <ul>
-        {jobs.map(job => (
-          <li key={job.id}>{job.title}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Navbar />
+      <div className="dashboard">
+        <h1>Dashboard</h1>
+        {user && <p>Welcome, {user.name}!</p>}
+        <h2>Available Jobs</h2>
+        <ul>
+          {jobs.map(job => (
+            <li key={job.id}>{job.title}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

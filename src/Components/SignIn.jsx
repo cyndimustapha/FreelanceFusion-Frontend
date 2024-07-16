@@ -38,7 +38,7 @@ const SignIn = () => {
 
       const responseData = await response.json();
       localStorage.setItem('token', responseData.access_token);
-      navigate('/mainpage');
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }

@@ -1,75 +1,34 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import SignIn from './SignIn';
+import './Home.css';
+import Navbar from './NavBar';
 
-function Home() {
-  const styles = {
-    container: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
-      background: '#f0f0f0',
-    },
-    formWrapper: {
-      width: '90%',
-      maxWidth: '500px',
-      background: '#ffffff',
-      padding: '30px',
-      borderRadius: '8px',
-      boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
-      border: '1px solid #e0e0e0',
-      boxSizing: 'border-box',
-    },
-    loginForm: {
-      textAlign: 'center',
-    },
-    heading: {
-      fontSize: '28px',
-      marginBottom: '30px',
-      color: '#333',
-    },
-    button: {
-      width: '100%',
-      marginBottom: '15px',
-      borderRadius: '5px',
-      fontSize: '16px',
-    },
-    signInWrapper: {
-      marginTop: '20px',
-      borderTop: '1px solid #e0e0e0',
-      paddingTop: '20px',
-    },
-    signInLabel: {
-      marginBottom: '15px',
-      fontWeight: 'bold',
-      fontSize: '18px',
-      color: '#555',
-    },
-  };
-
+const HomePage = () => {
   return (
-    <div style={styles.container}>
-      <div style={styles.formWrapper}>
-        <div style={styles.loginForm}>
-          <h1 style={styles.heading}>Welcome to Freelance Fusion!</h1>
-          <Button
-            as={Link}
-            to="/signup"
-            variant="primary"
-            style={styles.button}
-          >
-            Create Account
-          </Button>
-          <div style={styles.signInWrapper}>
-            <p style={styles.signInLabel}>Sign In</p>
-            <SignIn />
+    <>
+      <Navbar />
+      <div className="homepage">
+        <header className="homepage-header">
+          <h1>Welcome to Freelance Fusion</h1>
+          <p>Your one-stop destination for freelancing opportunities</p>
+          <a href="/jobs" className="cta-button">Get Started</a>
+        </header>
+        <section className="features">
+          <div className="feature">
+            <h2>Find Jobs</h2>
+            <p>Browse through a variety of job listings and find the perfect job that matches your skills.</p>
           </div>
-        </div>
+          <div className="feature">
+            <h2>Post Jobs</h2>
+            <p>Post your job listings and find the best freelancers to get your work done.</p>
+          </div>
+          <div className="feature">
+            <h2>Manage Projects</h2>
+            <p>Keep track of your projects and communicate with freelancers seamlessly.</p>
+          </div>
+        </section>
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default Home;
+export default HomePage;
