@@ -4,6 +4,7 @@ import './Home.css';
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -11,6 +12,7 @@ const Home = () => {
         const response = await axiosInstance.get('/jobs');
         setJobs(response.data.jobs);
       } catch (error) {
+        setError(error);
         console.error('Error fetching jobs:', error);
       }
     };
@@ -31,7 +33,9 @@ const Home = () => {
       </section>
       <section className="home-jobs">
         <h2>Job Listings</h2>
-        {jobs.length > 0 ? (
+        {error ? (
+          <p>Error fetching jobs: {error.message}</p>
+        ) : jobs.length > 0 ? (
           <ul>
             {jobs.map((job) => (
               <li key={job.id}>{job.title}</li>

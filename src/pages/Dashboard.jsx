@@ -4,18 +4,15 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   const [jobs, setJobs] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const token = localStorage.getItem('token'); // Assuming you store the JWT token in local storage
-        const response = await axiosInstance.get('/jobs', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get('/jobs');
         setJobs(response.data.jobs);
       } catch (error) {
+        setError(error);
         console.error('Error fetching jobs:', error);
       }
     };
@@ -31,7 +28,9 @@ const Dashboard = () => {
       <section className="dashboard-content">
         <div className="dashboard-item">
           <h2>Your Jobs</h2>
-          {jobs.length > 0 ? (
+          {error ? (
+            <p>Error fetching jobs: {error.message}</p>
+          ) : jobs.length > 0 ? (
             <ul>
               {jobs.map((job) => (
                 <li key={job.id}>{job.title}</li>

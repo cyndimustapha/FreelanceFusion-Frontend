@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 main = Blueprint('main', __name__)
 
-@main.route('/signup', methods=['POST'])
+@main.route('/api/signup', methods=['POST'])
 def signup():
     data = request.get_json()
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
@@ -14,7 +14,7 @@ def signup():
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
 
-@main.route('/login', methods=['POST'])
+@main.route('/api/login', methods=['POST'])
 def login():
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
@@ -23,24 +23,24 @@ def login():
         return jsonify({'token': access_token}), 200
     return jsonify({'message': 'Invalid credentials'}), 401
 
-@main.route('/jobs', methods=['GET'])
+@main.route('/api/jobs', methods=['GET'])
 @jwt_required()
 def get_jobs():
     jobs = Job.query.all()
     output = []
     for job in jobs:
-        job_data = {'title': job.title, 'description': job.description, 'client_id': job.client_id}
+        job_data = {'id': job.id, 'title': job.title, 'description': job.description, 'client_id': job.client_id}
         output.append(job_data)
     return jsonify({'jobs': output}), 200
 
-@main.route('/jobs/<int:job_id>', methods=['GET'])
+@main.route('/api/jobs/<int:job_id>', methods=['GET'])
 @jwt_required()
 def get_job(job_id):
     job = Job.query.get_or_404(job_id)
     job_data = {'title': job.title, 'description': job.description, 'client_id': job.client_id}
     return jsonify(job_data), 200
 
-@main.route('/jobs', methods=['POST'])
+@main.route('/api/jobs', methods=['POST'])
 @jwt_required()
 def create_job():
     data = request.get_json()
@@ -49,7 +49,7 @@ def create_job():
     db.session.commit()
     return jsonify({'message': 'Job created successfully'}), 201
 
-@main.route('/jobs/<int:job_id>', methods=['PUT'])
+@main.route('/api/jobs/<int:job_id>', methods=['PUT'])
 @jwt_required()
 def update_job(job_id):
     data = request.get_json()
@@ -59,7 +59,7 @@ def update_job(job_id):
     db.session.commit()
     return jsonify({'message': 'Job updated successfully'}), 200
 
-@main.route('/jobs/<int:job_id>', methods=['DELETE'])
+@main.route('/api/jobs/<int:job_id>', methods=['DELETE'])
 @jwt_required()
 def delete_job(job_id):
     job = Job.query.get_or_404(job_id)
@@ -67,7 +67,7 @@ def delete_job(job_id):
     db.session.commit()
     return jsonify({'message': 'Job deleted successfully'}), 200
 
-@main.route('/users/reset-password', methods=['PUT'])
+@main.route('/api/users/reset-password', methods=['PUT'])
 def reset_password():
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
