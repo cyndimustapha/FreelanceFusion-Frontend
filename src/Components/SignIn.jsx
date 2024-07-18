@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,25 +20,26 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/login', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Signin failed');
+        throw new Error(errorData.message || "Signin failed");
       }
 
       const responseData = await response.json();
-      localStorage.setItem('token', responseData.access_token);
-      navigate('/');
+      localStorage.setItem("token", responseData.access_token);
+      localStorage.setItem("user", JSON.stringify(responseData.user));
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
@@ -51,7 +52,7 @@ const SignIn = () => {
           <div style={styles.formWrapper}>
             <Form onSubmit={handleSubmit}>
               {error && <Alert variant="danger">{error}</Alert>}
-              
+
               <Form.Group className="mb-3" controlId="formGroupEmail">
                 <Form.Label style={styles.label}>Email address</Form.Label>
                 <Form.Control
@@ -91,35 +92,35 @@ const SignIn = () => {
 
 const styles = {
   section: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f0f0f0',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "#f0f0f0",
   },
   container: {
-    width: '100%',
-    maxWidth: '400px',
+    width: "100%",
+    maxWidth: "400px",
   },
   innerContainer: {
-    padding: '2rem',
-    borderRadius: '0.5rem',
-    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#ffffff',
+    padding: "2rem",
+    borderRadius: "0.5rem",
+    boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.1)",
+    backgroundColor: "#ffffff",
   },
   formWrapper: {
-    padding: '2rem',
+    padding: "2rem",
   },
   label: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   input: {
-    width: '100%',
-    marginBottom: '1rem',
+    width: "100%",
+    marginBottom: "1rem",
   },
   button: {
-    width: '100%',
-    marginTop: '1rem',
+    width: "100%",
+    marginTop: "1rem",
   },
 };
 
