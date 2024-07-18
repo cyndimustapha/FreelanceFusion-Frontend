@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import axiosInstance from './axios';
+import React, { useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
 import './Dashboard.css';
 import Navbar from "./Navbar"
+import Loading from '../components/Job-listing/Loading';
+import { fetchJobs } from '../redux/jobListings/jobListings';
+
 
 const Dashboard = () => {
-  const [jobs, setJobs] = useState([]);
-  const [error, setError] = useState(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await axiosInstance.get('/jobs');
-        setJobs(response.data.jobs);
-      } catch (error) {
-        setError(error);
-        console.error('Error fetching jobs:', error);
-      }
-    };
+    dispatch(fetchJobs());
+  }, [dispatch]);
 
-    fetchJobs();
-  }, []);
+  const { loading, jobs } = useSelector((state) => ({
+    loading: state.jobs.loading,
+    jobs: state.jobs.jobs
+  }));
+
+
+  if (loading || !jobs || !user) {
+    return <Loading />;
+  }
 
   return (
     <><Navbar/>
@@ -30,17 +34,12 @@ const Dashboard = () => {
     <section className="dashboard-content">
       <div className="dashboard-item">
         <h2>Your Jobs</h2>
-        {error ? (
-          <p>Error fetching jobs: {error.message}</p>
-        ) : jobs.length > 0 ? (
-          <ul>
+        <ul>
             {jobs.map((job) => (
               <li key={job.id}>{job.title}</li>
             ))}
           </ul>
-        ) : (
-          <p>No jobs available</p>
-        )}
+        
       </div>
       <div className="dashboard-item">
         <h2>Your Bids</h2>
