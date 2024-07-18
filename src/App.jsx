@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import JobListings from "./components/Job-listing/JobListings";
@@ -8,6 +8,7 @@ import JobDetails from "./components/Job-listing/JobDetails";
 import Messages from "./components/Messages";
 import JobPosting from "./pages/JobPosting";
 import Dashboard from "./pages/Dashboard";
+
 
 function App() {
   return (
