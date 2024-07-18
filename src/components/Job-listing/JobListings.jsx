@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchJobs } from '../../redux/jobListings/jobListings';
 import Loading from './Loading';
 import './styles/JobListings.css';
-import Navbar from '../NavBar';
+import Navbar from '../../pages/Navbar';
 
 const JobListings = () => {
   const dispatch = useDispatch();

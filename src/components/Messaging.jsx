@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./messages.css";
-import Navbar from "./NavBar";
+import "./Messaging.css";
+import Navbar from "../pages/Navbar";
 import Loading from "./Job-listing/Loading";
 import { fetchMessages } from "../redux/messages/messages";
 

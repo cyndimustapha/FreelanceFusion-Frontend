@@ -2,7 +2,7 @@
 import React from 'react'
 import './JobPosting.css';
 import JobPostingForm from '../components/JobPostingForm';
-import Navbar from '../components/NavBar';
+import Navbar from './Navbar';
 
 function JobPosting() {
   return (

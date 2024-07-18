@@ -38,7 +38,7 @@ const Signup = () => {
         throw new Error(errorData.message || 'Signup failed');
       }
 
-      navigate('/signin');
+      navigate('/login');
     } catch (err) {
       setError(err.message);
     }

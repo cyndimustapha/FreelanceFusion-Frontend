@@ -5,7 +5,7 @@ import SignIn from "./components/SignIn";
 import Signup from "./components/Signup";
 import JobListings from "./components/Job-listing/JobListings";
 import JobDetails from "./components/Job-listing/JobDetails";
-import Messages from "./components/Messages";
+import Messages from "./components/Messaging";
 import JobPosting from "./pages/JobPosting";
 import Dashboard from "./pages/Dashboard";
 
