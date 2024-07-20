@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -12,6 +13,15 @@ const Auth = () => {
     role: "client", // Default role
   });
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/home");
+    }
+  }, [navigate]);
+ 
+ 
+ 
 
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
