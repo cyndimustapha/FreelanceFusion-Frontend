@@ -1,6 +1,5 @@
-// src/components/BidForm.jsx
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import './BidForm.css';
 
 const BidForm = ({ jobId }) => {
   const [amount, setAmount] = useState('');
@@ -8,7 +7,7 @@ const BidForm = ({ jobId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://127.0.0.1:5000/jobs/${jobId}/bid`, {
+      const response = await fetch(`http://127.0.0.1:5000/api/bids`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -17,7 +16,9 @@ const BidForm = ({ jobId }) => {
         body: JSON.stringify({ amount, job_id: jobId }),
       });
       if (response.ok) {
+        setAmount('');
         alert('Bid placed successfully');
+        window.location.reload();
       } else {
         console.error('Error placing bid', await response.json());
       }
@@ -27,21 +28,23 @@ const BidForm = ({ jobId }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="bidAmount">
-        <Form.Label>Bid Amount</Form.Label>
-        <Form.Control
+    <form onSubmit={handleSubmit} className="bid-form">
+      <div className="form-group">
+        <label htmlFor="bidAmount">Bid Amount</label>
+        <input
           type="text"
+          id="bidAmount"
+          className="form-control"
           placeholder="Enter your bid amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
         />
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      </div>
+      <button type="submit" className="btn btn-primary">
         Place Bid
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };
 

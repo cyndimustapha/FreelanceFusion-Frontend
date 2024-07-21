@@ -1,4 +1,3 @@
-// src/components/BidList.jsx
 import React, { useEffect, useState } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
 
@@ -12,7 +11,7 @@ const BidList = ({ jobId }) => {
 
   const fetchBids = async (jobId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/jobs/${jobId}/bids`, {
+      const response = await fetch(`http://127.0.0.1:5000/api/bids/${jobId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -28,38 +27,16 @@ const BidList = ({ jobId }) => {
       console.error('Error:', error);
     }
   };
-
-  const handleSelectBid = async (bidId) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:5000/jobs/${jobId}/select-bid`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify({ bidId }),
-      });
-      if (response.ok) {
-        alert('Bid selected successfully!');
-        fetchBids(jobId); // Refresh bids after selection
-      } else {
-        alert('Failed to select bid.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to select bid.');
-    }
-  };
-
+  
   return (
     <div className="bid-list">
         <h3>Bids for This Job</h3>
         <ListGroup>
           {bids.map((bid) => (
             <ListGroup.Item key={bid.id}>
-              <p>Freelancer: {bid.freelancer}</p>
+              <p>Freelancer: {bid.freelancer.username}</p>
               <p>Bid Amount: ${bid.amount}</p>
-              <Button variant="primary" onClick={() => handleSelectBid(bid.id)}>
+              <Button variant="primary">
                 Select Bid
               </Button>
             </ListGroup.Item>

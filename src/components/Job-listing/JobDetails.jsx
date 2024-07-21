@@ -40,7 +40,7 @@ const JobDetails = () => {
         <p className="job-description">{details.description}</p>
         <p className="job-budget">Budget: ${details.budget}</p>
         <p className="job-client-id">Client Name: {details.companyName}</p>
-        <p className="job-status">Status: {details.location}</p>
+        <p className="job-status">Location: {details.location}</p>
 
         <button onClick={handleToggleBidForm}>
           {showBidForm ? 'Hide Bid Form' : 'Show Bid Form'}
