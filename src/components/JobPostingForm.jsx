@@ -7,7 +7,8 @@ const JobPostingForm = () => {
     description: '',
     location: '',
     budget: '',
-    companyName: "",
+    companyName: '',
+    email: ''
   });
   
   const [step, setStep] = useState(1);
@@ -29,18 +30,24 @@ const JobPostingForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-      alert('Job posted successfully!');
-    } else {
-      alert('Failed to post job.');
+    e.preventDefault();  
+    try {
+      const response = await fetch('http://localhost:5000/job', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),  
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
@@ -102,11 +109,14 @@ const JobPostingForm = () => {
             <label>
               <h2>Job Budget</h2>
               <input
-                type="text"
+                type="number"
                 name="budget"
                 value={formData.budget}
                 onChange={handleChange}
                 required
+                step="0.01"
+                min="0"
+                placeholder="$"
               />
             </label>
             <button type="button" onClick={handleBack}>Back</button>
@@ -122,6 +132,23 @@ const JobPostingForm = () => {
                 type="text"
                 name="companyName"
                 value={formData.companyName}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <button type="button" onClick={handleBack}>Back</button>
+            <button type="button" onClick={handleNext}>Next</button>
+          </>
+        )}
+        {step === 6 && (
+          <>
+            <h1>Provide Your Contact Email ...</h1>
+            <label>
+              <h2>Email</h2>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
