@@ -1,5 +1,7 @@
+// src/components/JobPostingForm.jsx
 import React, { useState } from 'react';
 import './JobPostingForm.css';
+
 
 const JobPostingForm = () => {
   const [formData, setFormData] = useState({
@@ -31,10 +33,13 @@ const JobPostingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('', {
+    const token = localStorage.getItem('token');
+    const JOBS_API = 'http://127.0.0.1:5000/api/jobs'
+    const response = await fetch(JOBS_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(formData),
     });
@@ -104,14 +109,11 @@ const JobPostingForm = () => {
             <label>
               <h2>Job Budget</h2>
               <input
-                type="number"
+                type="text"
                 name="budget"
                 value={formData.budget}
                 onChange={handleChange}
                 required
-                step="0.01"
-                min="0"
-                placeholder="$"
               />
             </label>
             <button type="button" onClick={handleBack}>Back</button>
@@ -127,23 +129,6 @@ const JobPostingForm = () => {
                 type="text"
                 name="companyName"
                 value={formData.companyName}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <button type="button" onClick={handleBack}>Back</button>
-            <button type="button" onClick={handleNext}>Next</button>
-          </>
-        )}
-        {step === 6 && (
-          <>
-            <h1>Provide Your Contact Email ...</h1>
-            <label>
-              <h2>Email</h2>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
