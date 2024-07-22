@@ -80,4 +80,18 @@ body {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
+.confirmation-message {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  .confirmation-message p {
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+  }
+
 
