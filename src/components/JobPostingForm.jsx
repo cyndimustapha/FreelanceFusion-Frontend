@@ -1,7 +1,5 @@
-// src/components/JobPostingForm.jsx
 import React, { useState } from 'react';
 import './JobPostingForm.css';
-
 
 const JobPostingForm = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +32,7 @@ const JobPostingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const JOBS_API = 'http://127.0.0.1:5000/api/jobs'
+    const JOBS_API = 'http://127.0.0.1:5000/api/jobs';
     const response = await fetch(JOBS_API, {
       method: 'POST',
       headers: {
@@ -49,7 +47,6 @@ const JobPostingForm = () => {
       alert('Failed to post job.');
     }
   };
-
 
   return (
     <div className="job-posting-form">
@@ -129,6 +126,23 @@ const JobPostingForm = () => {
                 type="text"
                 name="companyName"
                 value={formData.companyName}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <button type="button" onClick={handleBack}>Back</button>
+            <button type="button" onClick={handleNext}>Next</button>
+          </>
+        )}
+        {step === 6 && (
+          <>
+            <h1>Provide Your Contact Information ...</h1>
+            <label>
+              <h2>Email</h2>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
