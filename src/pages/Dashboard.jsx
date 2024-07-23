@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import './Dashboard.css';
 import Navbar from "./Navbar"
@@ -7,12 +7,14 @@ import { fetchJobs } from '../redux/jobListings/jobListings';
 
 
 const Dashboard = () => {
+  const [bids, setBids] = useState(null)
   const user = JSON.parse(localStorage.getItem('user'));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchJobs());
+    fetchBids();
   }, [dispatch]);
 
   const { loading, jobs } = useSelector((state) => ({
@@ -20,8 +22,28 @@ const Dashboard = () => {
     jobs: state.jobs.jobs
   }));
 
+  const fetchBids = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/user/bids`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setBids(data);
+        console.log(data);
+        console.log(bids);
+      } else {
+        console.error('Failed to fetch bids');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-  if (loading || !jobs || !user) {
+  if (loading || !jobs || !user || !bids) {
     return <Loading />;
   }
 
@@ -34,16 +56,22 @@ const Dashboard = () => {
     <section className="dashboard-content">
       <div className="dashboard-item">
         <h2>Your Jobs</h2>
+        <p>Jobs you have posted.</p>
         <ul>
-            {jobs.map((job) => (
-              <li key={job.id}>{job.title}</li>
-            ))}
-          </ul>
+          {jobs.map((job) => (
+            <li key={job.id}>{job.title}</li>
+          ))}
+        </ul>
         
       </div>
       <div className="dashboard-item">
         <h2>Your Bids</h2>
         <p>Track your bids and job statuses.</p>
+        <ul>
+          {bids.map((bid) => (
+            <li key={bid.id}>{bid.job.title} @ {bid.amount}<br />Selected - {bid.selected ? 'Yes' : 'No'}</li>
+          ))}
+        </ul>
       </div>
     </section>
   </div>

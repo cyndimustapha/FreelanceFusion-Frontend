@@ -4,6 +4,7 @@ import { ListGroup, Button } from 'react-bootstrap';
 
 const BidList = ({ jobId }) => {
   const [bids, setBids] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     fetchBids(jobId);
@@ -27,6 +28,28 @@ const BidList = ({ jobId }) => {
       console.error('Error:', error);
     }
   };
+
+  const handleSelectBid = async (bidId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/bids/${jobId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ "bid_id": bidId }),
+      });
+      if (response.ok) {
+        alert('Bid selected successfully!');
+        fetchBids(jobId);
+      } else {
+        alert('Failed to select bid.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to select bid.');
+    }
+  };
   
   return (
     <div className="bid-list">
@@ -36,9 +59,12 @@ const BidList = ({ jobId }) => {
             <ListGroup.Item key={bid.id}>
               <p>Freelancer: {bid.freelancer.username}</p>
               <p>Bid Amount: ${bid.amount}</p>
-              <Button variant="primary">
-                Select Bid
-              </Button>
+              <p>Selected: {bid.selected ? 'Yes' : 'No'}</p>
+              {bid.job.email !== user.email ? <br /> : (
+                <Button variant="primary" onClick={() => handleSelectBid(bid.id)} disabled={bid.selected} >
+                  Select Bid
+                </Button>
+              )}
             </ListGroup.Item>
           ))}
         </ListGroup>

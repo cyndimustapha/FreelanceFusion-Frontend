@@ -1,4 +1,3 @@
-//src/components/Job-listing/JobDetails.jsx
 import React, { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -40,13 +39,14 @@ const JobDetails = () => {
         <p className="job-description">{details.description}</p>
         <p className="job-budget">Budget: ${details.budget}</p>
         <p className="job-client-id">Client Name: {details.companyName}</p>
-        <p className="job-status">Location: {details.location}</p>
+        <p className="job-status">Location: {details.location}</p> <br /> 
 
         <button onClick={handleToggleBidForm}>
           {showBidForm ? 'Hide Bid Form' : 'Show Bid Form'}
-        </button>
+        </button><br /> 
 
         {showBidForm && <BidForm jobId={id} />}
+        <br /> 
         <BidList jobId={id} />
       </div>
     </>
