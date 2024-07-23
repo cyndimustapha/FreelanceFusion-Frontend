@@ -24,30 +24,30 @@ const Messages = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (messages && messages.length > 0 && currentUser) {
-      const emailSet = new Set();
-      const uniqueUsers = [];
-
-      messages.forEach((msg) => {
-        if (
-          msg.sender.email !== currentUser.email &&
-          !emailSet.has(msg.sender.email)
-        ) {
-          emailSet.add(msg.sender.email);
-          uniqueUsers.push(msg.sender);
-        }
-        if (
-          msg.recipient.email !== currentUser.email &&
-          !emailSet.has(msg.recipient.email)
-        ) {
-          emailSet.add(msg.recipient.email);
-          uniqueUsers.push(msg.recipient);
-        }
-      });
-
-      setPeople(uniqueUsers);
+    if (currentUser) {
+      fetchPeople();
     }
-  }, [messages, currentUser]);
+  }, [currentUser]);
+
+  const fetchPeople = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/users`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setPeople(data);
+      } else {
+        console.error('Failed to fetch people');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   useEffect(() => {
     if (chatMessagesRef.current) {

@@ -49,14 +49,14 @@ const Auth = () => {
     const url = isLogin
       ? "http://127.0.0.1:5000/api/login"
       : "http://127.0.0.1:5000/api/users"; // Updated to match your endpoint
-    const method = "POST"; // Both login and user creation use POST
+    //const method = "POST"; // Both login and user creation use POST
     const body = isLogin
       ? JSON.stringify({ email: formData.email, password: formData.password })
       : JSON.stringify(formData);
 
     try {
       const response = await fetch(url, {
-        method,
+        method : "POST",
         headers: {
           "Content-Type": "application/json",
         },
