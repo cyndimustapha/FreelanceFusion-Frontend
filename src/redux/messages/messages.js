@@ -9,7 +9,8 @@ const initialState = {
 
 const fetchMessages = createAsyncThunk(GET_MESSAGES, async () => {
   try {
-    const MESSAGES_API = "https://freelance-fusion-backend.vercel.app/api/messages";
+    const MESSAGES_API =
+      "https://freelance-fusion-backend.vercel.app/api/messages";
     const token = localStorage.getItem("token");
     const response = await fetch(MESSAGES_API, {
       method: "GET",
@@ -41,9 +42,9 @@ const messagesSlice = createSlice({
         state.loading = false;
         state.messages = action.payload;
       })
-      .addCase(fetchMessages.rejected, (state, action) => {
+      .addCase(fetchMessages.rejected, (state) => {
         state.loading = false;
-        state.messages = null; // or handle error state as needed
+        state.messages = null;
       });
   },
 });

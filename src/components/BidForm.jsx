@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './BidForm.css';
+import PropTypes from 'prop-types';
 
 const BidForm = ({ jobId }) => {
   const [amount, setAmount] = useState('');
@@ -46,6 +47,10 @@ const BidForm = ({ jobId }) => {
       </button>
     </form>
   );
+};
+
+BidForm.propTypes = {
+  jobId: PropTypes.number.isRequired,
 };
 
 export default BidForm;

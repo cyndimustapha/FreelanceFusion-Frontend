@@ -35,7 +35,7 @@ const detailsSlice = createSlice({
       details: { ...action.payload },
     }));
 
-    builder.addCase(fetchDetails.rejected, (state, action) => ({
+    builder.addCase(fetchDetails.rejected, () => ({
       loading: false,
       details: null,
     }));

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListGroup, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 
 const BidList = ({ jobId }) => {
@@ -70,6 +71,10 @@ const BidList = ({ jobId }) => {
         </ListGroup>
       </div>
   );
+};
+
+BidList.propTypes = {
+  jobId: PropTypes.number.isRequired,
 };
 
 export default BidList;

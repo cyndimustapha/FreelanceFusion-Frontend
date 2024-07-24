@@ -1,5 +1,3 @@
-// src/pages/JobPosting.jsx
-import React from 'react'
 import './JobPosting.css';
 import JobPostingForm from '../components/JobPostingForm';
 import Navbar from './Navbar';

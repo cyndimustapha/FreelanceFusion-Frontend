@@ -1,8 +1,7 @@
-// src/components/Job-listing/JobListings.jsx
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchJobs } from '../../redux/jobListings/jobListings';
+import { fetchJobs } from '../../redux/jobListings/jobListings.js';
 import Loading from './Loading';
 import './styles/JobListings.css';
 import Navbar from '../../pages/Navbar';

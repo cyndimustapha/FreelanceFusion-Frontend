@@ -2,10 +2,9 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import logger from "redux-logger";
-import jobsReducer from "./jobListings/jobListings";
-import detailsReducer from "./jobListings/jobDetails";
-import messagesReducer from "./messages/messages";
+import jobsReducer from "./jobListings/jobListings.js";
+import detailsReducer from "./jobListings/jobDetails.js";
+import messagesReducer from "./messages/messages.js";
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
@@ -18,7 +17,6 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(logger),
+    }),
 });
-
 export default store;

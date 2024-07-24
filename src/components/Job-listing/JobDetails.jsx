@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from 'react';
+import { useEffect,useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchDetails } from '../../redux/jobListings/jobDetails';
+import { fetchDetails } from '../../redux/jobListings/jobDetails.js';
 import Navbar from '../../pages/Navbar';
 import BidForm from '../BidForm';
 import BidList from '../BidList';
