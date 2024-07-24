@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const fetchDetails = createAsyncThunk(GET_DETAILS, async (id) => {
-  const DETAILS_API = "http://127.0.0.1:5000/api/jobs/";
+  const DETAILS_API = "https://freelance-fusion-backend.vercel.app/api/jobs/";
   const token = localStorage.getItem("token");
   const response = await fetch(DETAILS_API + id, {
     headers: {

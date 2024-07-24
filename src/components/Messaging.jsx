@@ -31,7 +31,7 @@ const Messages = () => {
 
   const fetchPeople = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/users`, {
+      const response = await fetch(`https://freelance-fusion-backend.vercel.app/api/users`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -59,7 +59,7 @@ const Messages = () => {
     e.preventDefault();
     if (newMessage.trim() && selectedPerson) {
       const token = localStorage.getItem("token");
-      const MESSAGES_API = "http://127.0.0.1:5000/api/messages";
+      const MESSAGES_API = "https://freelance-fusion-backend.vercel.app/api/messages";
       const response = await fetch(MESSAGES_API, {
         method: "POST",
         headers: {

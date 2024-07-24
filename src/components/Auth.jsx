@@ -47,8 +47,8 @@ const Auth = () => {
     setError("");
 
     const url = isLogin
-      ? "http://127.0.0.1:5000/api/login"
-      : "http://127.0.0.1:5000/api/users"; // Updated to match your endpoint
+      ? "https://freelance-fusion-backend.vercel.app/api/login"
+      : "https://freelance-fusion-backend.vercel.app/api/users"; // Updated to match your endpoint
     //const method = "POST"; // Both login and user creation use POST
     const body = isLogin
       ? JSON.stringify({ email: formData.email, password: formData.password })

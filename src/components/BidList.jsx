@@ -12,7 +12,7 @@ const BidList = ({ jobId }) => {
 
   const fetchBids = async (jobId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/bids/${jobId}`, {
+      const response = await fetch(`https://freelance-fusion-backend.vercel.app/api/bids/${jobId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -31,7 +31,7 @@ const BidList = ({ jobId }) => {
 
   const handleSelectBid = async (bidId) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/bids/${jobId}`, {
+      const response = await fetch(`https://freelance-fusion-backend.vercel.app/api/bids/${jobId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

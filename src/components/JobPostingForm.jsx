@@ -32,7 +32,7 @@ const JobPostingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const JOBS_API = 'http://127.0.0.1:5000/api/jobs';
+    const JOBS_API = 'https://freelance-fusion-backend.vercel.app/api/jobs';
     const response = await fetch(JOBS_API, {
       method: 'POST',
       headers: {
